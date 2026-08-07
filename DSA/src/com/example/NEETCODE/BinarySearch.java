@@ -3,8 +3,8 @@ package com.example.NEETCODE;
 public class BinarySearch {
 
     public static void main(String[] args) {
-        int[] arr = {-1, 0, 2, 4, 6, 8};
-        int target = 4;
+        int[] arr = {-3 ,-1, 0, 2, 4, 6, 8};
+        int target = -2;
 
         int result = binarySearch(arr, target);
 
@@ -23,7 +23,7 @@ public class BinarySearch {
 
     public static  int searchTarget(int[] arr , int left , int right , int target){
         if(left > right){
-            return -1;
+            return right + 1;
         }
         int mid = (left + right)/2;
         
