@@ -1,18 +1,37 @@
 package com.example.NEETCODE;
 
 public class sqrt {
-    static void main(String[] args) {
-        String s1 = "hello";
-        String s2 = "he" + "llo";
-        if(s1==s2){
-            System.out.println(true);
-        }
-        String part = "he";
-        String s3 = part + "llo";
-        System.out.println(s3);
-        if(s1==s3){
-            System.out.println(true);
+
+    public static void main(String[] args) {
+
+        int x = 1073741824;
+
+        int finalAns = sqrt(x);
+
+        System.out.println(finalAns);
+    }
+
+    public static int sqrt(int x) {
+
+        int left = 1;
+        int right = x;
+        int maximumMid = 0;
+
+        while (left <= right) {
+
+            int currentMid = left + (right - left) / 2;
+
+            long sqrtMid = (long) currentMid * currentMid;
+
+            if (sqrtMid > x) {
+                right = currentMid - 1;
+            }
+            else {
+                maximumMid = currentMid;
+                left = currentMid + 1;
+            }
         }
 
+        return maximumMid;
     }
 }

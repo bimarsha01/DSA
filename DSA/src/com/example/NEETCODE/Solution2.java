@@ -2,14 +2,14 @@ package com.example.NEETCODE;
 
 public class Solution2 {
 
-    public static void main(String[] args) {
+     static void main(String[] args) {
         int[][] matrix = {
                 {1, 3, 5, 7},
                 {10, 11, 16, 20},
                 {23, 30, 34, 60}
         };
 
-        int target = 16;
+        int target = 21;
 
         Solution2 obj = new Solution2();
 
@@ -20,49 +20,56 @@ public class Solution2 {
 
     public boolean searchMatrix(int[][] matrix, int target) {
 
-        int ROWS = matrix.length;
-        int COLS = matrix[0].length;
-
         int top = 0;
-        int bot = ROWS - 1;
+        int bottom  = matrix.length-1;
+        boolean result = false;
 
-        // First Binary Search: Find the correct row
-        while (top <= bot) {
+        while(top <= bottom) {
 
-            int row = top + (bot - top) / 2;
+            int midRowIndex = top + (bottom - top) / 2;
 
-            if (target > matrix[row][COLS - 1]) {
-                top = row + 1;
-            } else if (target < matrix[row][0]) {
-                bot = row - 1;
-            } else {
-                break;
+            int firstColIndex = 0;
+
+            int lastColIndex = matrix[midRowIndex].length - 1;
+
+
+            int lowerVal = matrix[midRowIndex][firstColIndex];
+            int higherVal = matrix[midRowIndex][lastColIndex];
+
+            if(target >= lowerVal && target <= higherVal){
+
+                return findElement(matrix[midRowIndex], target);
             }
+            else{
+                 if(target < lowerVal){
+                     bottom = midRowIndex -1;
+                 }
+                 else if(target > higherVal){
+                     top = midRowIndex + 1;
+                 }
+            }
+
         }
 
-        if (top > bot) {
-            return false;
-        }
 
-        int row = top + (bot - top) / 2;
+        return result;
+    }
 
-        // Second Binary Search: Search within the row
+    public boolean findElement(int[] arr, int target) {
         int left = 0;
-        int right = COLS - 1;
+        int right = arr.length - 1;
 
         while (left <= right) {
+            int mid = (left + right) / 2;
 
-            int mid = left + (right - left) / 2;
-
-            if (target > matrix[row][mid]) {
-                left = mid + 1;
-            } else if (target < matrix[row][mid]) {
+            if (target < arr[mid]) {
                 right = mid - 1;
-            } else {
+            } else if (target > arr[mid]) {
+                left = mid + 1;
+            } else if (target == arr[mid]) {
                 return true;
             }
         }
-
         return false;
     }
 }
