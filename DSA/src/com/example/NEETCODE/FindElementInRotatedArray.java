@@ -3,8 +3,8 @@ package com.example.NEETCODE;
 public class FindElementInRotatedArray {
     public static void main(String[] args) {
 
-        int[] nums = {1,1,1,1,1,2,1,1,1,1};
-        int target = 2;
+        int[] nums = {1,0,1,1,1};
+        int target = 0;
         FindElementInRotatedArray obj = new FindElementInRotatedArray();
 
         boolean result = obj.search(nums , target);
@@ -17,37 +17,36 @@ public class FindElementInRotatedArray {
         int left = 0;
         int right = nums.length-1;
 
-        while(left<right){
+       while(left <=right){
+           int mid = left + (right-left)/2;
 
-            int mid = left + (right-left) /2;
+           if(nums[left] <= nums[mid]){
+               if(nums[left] == nums[mid]){
+                   left++;
+               }
+               else if (target>=nums[left] && target<=nums[mid]){
+                   right = mid;
+               }
+               else{
+                   left = mid +1;
+               }
+           } else if (nums[right] >= nums[mid]) {
+               if(nums[right] == nums[mid]){
+                   right--;
+               }
 
-            if(nums[mid] >= nums[right]){
-                left = mid + 1;
-            }
-            else{
-                right = mid;
-            }
-        }
-        int pivot = left;
-        left = 0;
-         right = nums.length-1;
-         if(target >=nums[pivot] && target<= nums[right]){
-             left = pivot;
-         }
-         else{
-             right = pivot-1;
-         }
-        while (left <= right) {
-            int m = (left + right) / 2;
-            if (nums[m] == target) {
-                return true;
-            } else if (nums[m] < target) {
-                left = m + 1;
-            } else {
-                right = m - 1;
-            }
-        }
+               else if(target>=nums[left] && target<=nums[right]){
+                   left = mid;
+               }
+               else{
+                   right = mid -1;
+               }
+           }
 
+           if(nums[mid] == target){
+               return true;
+           }
+       }
         return false;
     }
 }
