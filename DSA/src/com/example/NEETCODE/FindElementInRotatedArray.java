@@ -3,16 +3,16 @@ package com.example.NEETCODE;
 public class FindElementInRotatedArray {
     public static void main(String[] args) {
 
-        int[] nums = {3,4,5,6,0,1,2};
-        int target = 0;
+        int[] nums = {1,1,1,1,1,2,1,1,1,1};
+        int target = 2;
         FindElementInRotatedArray obj = new FindElementInRotatedArray();
 
-        int result = obj.search(nums , target);
+        boolean result = obj.search(nums , target);
 
         System.out.println("Minimum element: " + result);
     }
 
-    public int search(int[] nums , int target) {
+    public boolean search(int[] nums , int target) {
 
         int left = 0;
         int right = nums.length-1;
@@ -21,7 +21,7 @@ public class FindElementInRotatedArray {
 
             int mid = left + (right-left) /2;
 
-            if(nums[mid] > nums[right]){
+            if(nums[mid] >= nums[right]){
                 left = mid + 1;
             }
             else{
@@ -40,7 +40,7 @@ public class FindElementInRotatedArray {
         while (left <= right) {
             int m = (left + right) / 2;
             if (nums[m] == target) {
-                return m;
+                return true;
             } else if (nums[m] < target) {
                 left = m + 1;
             } else {
@@ -48,6 +48,6 @@ public class FindElementInRotatedArray {
             }
         }
 
-        return -1;
+        return false;
     }
 }
