@@ -48,6 +48,21 @@ public class practise1 {
 
         System.out.println(a==b);
         System.out.println(c==d);
+
+        List<String> names = new ArrayList<>();
+        names.add("bimarsha");
+        names.add("ghimire");
+        names.add("don");
+
+        for(String name: names){
+            if(name == "ghimire"){
+                names.remove(name);
+            }
+        }
+
+        for(String name1 : names){
+            System.out.println(name1);
+        }
     }
 
 
