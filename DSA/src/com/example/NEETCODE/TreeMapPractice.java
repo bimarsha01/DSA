@@ -5,6 +5,7 @@ package com.example.NEETCODE;
 //import com.example.CollectionInterface.comparable.students;
 
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.TreeMap;
 
 class Student4 implements Comparable<Student4>{
@@ -62,5 +63,13 @@ public class TreeMapPractice {
                     + " → "
                     + entry.getValue());
         }
+
+        HashMap<String , Integer> hashMap = new HashMap<>();
+
+        hashMap.put("apple" , 10);
+        hashMap.put("banana" , 10);
+        hashMap.put("apple" , 30);
+
+        System.out.println(hashMap);
     }
 }
